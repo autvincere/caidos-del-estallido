@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect, useRef } from 'react'
-import styled, {createGlobalStyle} from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import Stiky from './Sticky'
 import Person from './Person'
 
@@ -40,7 +40,6 @@ const Section = ({ usersInfo }) => {
      const stickyRef = useRef(null)
 
      const handleScrollMap = () => {
-        
 
           const sticky = stickyRef.current;
           // console.log(sticky);

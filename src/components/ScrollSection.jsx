@@ -104,11 +104,11 @@ const sectionTwo=[
                image: paula,
                fecha: '20 de octubre',
                direction: 'normal',
-               margin: 'margin',
+               margin: 'margin_left',
                name:'Paula Lorca - Alicia Cofré',
                descrip: 'Ambas víctimas fueron encontradas dentro de un supermercado Líder incendiado en la comuna de San Bernardo.'
-          },
-          {
+          }
+          ,{
                image: renzo,
                fecha: '18 de octubre',
                direction: 'reverse',
@@ -128,19 +128,22 @@ const sectionTwo=[
      //      }
      // ]
 
-const ScrollSection = () => {
+const ScrollSection = ({downRef}) => {
 
      const [offsetY, setOffsetY] = useState(0);
      const [animationEnter, setAnimationEnter ] = useState('')
   
      const mapRef = useRef()
-     const downRef = useRef()
+     // const downRef = useRef()
 
      const handleScroll = () => {
           // console.log(window.pageYOffset)
           return setOffsetY(window.pageYOffset);
      }
 
+     // const handleDownButton = () =>{
+     //      console.log(downRef.getBoundingClientRect());
+     // } 
      const handleScrollMap = () => {
           const map = mapRef.current;
           const { y } = map.getBoundingClientRect();
@@ -159,20 +162,27 @@ const ScrollSection = () => {
                window.removeEventListener("scroll", handleScrollMap);
           }
      }, [])
+
      return (
           <Parallax>
                <GlobalStyle/>
                <ContentImage ref={mapRef} className={animationEnter} style={{ transform: `translateY(-${offsetY * 0.5}px)` }} />
-               <ContentInfo>
+               <ContentInfo ref={downRef}>
 
                     <Section
-                         ref={downRef} 
                          usersInfo ={sectionOne}
                     />
                    
                     <h4 style={{ transform: `translateY(-${offsetY * 0.25}px)` }}>Victima</h4>
 
-                    <Section 
+                    <Section
+                         usersInfo ={sectionTwo}
+                    />
+                   
+                    <h4 style={{ transform: `translateY(-${offsetY * 0.25}px)` }}>Victima</h4>
+
+
+                    {/* <Section 
                          usersInfo ={sectionTwo}
                     />
                     
@@ -181,7 +191,7 @@ const ScrollSection = () => {
                     <Section 
                          usersInfo ={sectionTwo}
                     />
-                         
+                          */}
                </ContentInfo>
           </Parallax>
      )

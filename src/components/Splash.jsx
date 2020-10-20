@@ -98,6 +98,8 @@ article{
     border-radius: 60px;
     background-color: #ffffffbf;
     padding: 6px;
+    display: block;
+    cursor: pointer;
     }
      }
 img{
@@ -110,28 +112,7 @@ img{
     left: 11%;
 }
 `
-
-const Splash = () => {
-
-
-     // const increment = () => {
-     // let contador = 0;
-
-     //         const saludo = () => {
-     //              contador++
-     //              console.log(contador); 
-     //              if (contador === 30 ) {
-     //                   clearInterval(intervalo)
-     //              }  
-     //         }
-     //         let intervalo = setInterval(saludo, 100)
-     //         return intervalo;
-     //      }
-     //      increment()    
-
-
-
-
+const Splash = ({handleDown}) => {
 
      return (
           <Section>
@@ -146,9 +127,9 @@ const Splash = () => {
                          Durante las protestas ocurridas en chile, a fines del 2019, murieron 34 personas, en contextos que no han sido esclarecidos totalmente a la fecha de hoy...
                     </p>
                </article>
-
-               <div className="down_icon" onClick={()=> console.log('hice click')}>
-                    <DownHand width={60} height={60} />
+               {/* <div className="down_icon" onClick={()=> console.log('hice click')} */}
+               <div className="down_icon" >
+                    <DownHand width={60} height={60} onClick={handleDown} />
                </div>
 
                <img src={require('../assets/img/splash.png')} alt="bandera_chile" />

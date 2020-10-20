@@ -22,7 +22,7 @@ const Texto = styled.div`
           }
           `
 const Stiky = (props) => {
-     console.log(props.fecha[0].fecha);
+     // console.log(props.fecha[0].fecha);
      return (
           <Fragment>
                <GlobalStyle />
