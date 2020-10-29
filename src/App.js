@@ -18,7 +18,7 @@ h1{
 `
 const ContentLogo = styled(Logo)`
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     margin: 10px 0 0 10px;
 `
 // const CenterContent= styled.div`

@@ -31,7 +31,6 @@ const GlobalStyle = createGlobalStyle`
      }
 `
 
-
 const Section = ({ usersInfo }) => {
 // console.log(usersInfo);
      
@@ -85,7 +84,7 @@ const Section = ({ usersInfo }) => {
                     </div>
 
                     <Person usersInfo ={usersInfo}/>
-                    
+                   
                </div>
           </Fragment>
      )

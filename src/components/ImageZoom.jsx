@@ -2,13 +2,13 @@ import React,{useRef, useEffect, useState} from 'react'
 import styled from 'styled-components'
 
 const ContImage = styled.div`
-     width: 33vw;
-     height: 46vh;
+     width: 460px;
+    height: 340px;
      margin-top: 60px;
      overflow: hidden;
 `
 const Images = styled.div`
-     width: 33vw;
+     width: 460px;
      height: 340px;
      background-repeat: no-repeat;
      background-size: cover;
@@ -25,12 +25,12 @@ const ImageZoom = ( {usersImage} ) => {
 
           const { top } = imgRef.current.getBoundingClientRect();
           // console.log(parseInt(Math.abs(top)));
-          // console.log(top);
+          console.log(imgRef.current.getBoundingClientRect());
      
           const getValue = () => {
                let value = 1
 
-               if ( top  < -80) value = value + 0.001 * Math.abs(top);
+               if ( top  < 600 ) value = value + 0.0003 * Math.abs(top);
                if( top < -500 ) value = 1
 
                return value
