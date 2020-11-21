@@ -2,11 +2,12 @@ import React from 'react'
 import DownHand from './DownHand'
 import styled from 'styled-components'
 import Incremento from './Incremento'
+import { ReactBasicScroll } from "react-basic-scroll";
 
 const Section = styled.section`
 height: 100vh;
 position: relative;
-z-index: 1;
+z-index: 3;
 /* margin-top: 30px; */
 
 /**
@@ -112,8 +113,19 @@ img{
     left: 11%;
 }
 `
-const Splash = ({handleDown}) => {
+const Splash = ({ handleDown }) => {
 
+     const config = {
+          from: 'top-top',
+          to: 'bottom-bottom',
+          direct: true,
+          props: {
+              '--ty': {
+                  from: '0px',
+                  to: '40px',
+              }
+          }
+      }
      return (
           <Section>
                <h1>#ellosson</h1>
@@ -123,9 +135,12 @@ const Splash = ({handleDown}) => {
                          <Incremento />
                          <p>Fallecidos</p>
                     </div>
-                    <p>
+                    <ReactBasicScroll config={ config }>
+                        <p className={`o-anim-ty o-apply-ty--x1`} >
                          Durante las protestas ocurridas en chile, a fines del 2019, murieron 34 personas, en contextos que no han sido esclarecidos totalmente a la fecha de hoy...
                     </p>
+                    </ReactBasicScroll>
+                   
                </article>
                {/* <div className="down_icon" onClick={()=> console.log('hice click')} */}
                <div className="down_icon" >

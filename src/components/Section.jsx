@@ -9,10 +9,17 @@ const GlobalStyle = createGlobalStyle`
   height: 3rem; /* We need to change this value */
 }
 
-.sticky-inner {
+/* .sticky-inner {
   position: fixed;
   top: 20px;
   right: 0;
+} */
+
+.sticky-inner {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    transition: all .7s ease-in;
 }
 .normal{
      flex-direction: row;
@@ -80,7 +87,7 @@ const Section = ({ usersInfo }) => {
                <div ref={stickyRef} className="align">
 
                     <div className={isSticky}>
-                         <Stiky fecha={usersInfo}/>
+                        <Stiky fecha={usersInfo}/>
                     </div>
 
                     <Person usersInfo ={usersInfo}/>

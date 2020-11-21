@@ -46,11 +46,11 @@ const ImageZoom = ( {usersImage} ) => {
           }
      }, [])
 
-     return (
-               <ContImage ref={imgRef}>
-                              <Images style={{backgroundImage:`url(${usersImage})`,transform:`scale(${valueImage})` }} />
-               </ContImage>
-     )
+    return (
+        <ContImage ref={imgRef}>
+            <Images style={{backgroundImage:`url(${usersImage})`}} />
+        </ContImage>
+    )
 }   
 
 export default ImageZoom

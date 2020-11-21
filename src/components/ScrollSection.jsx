@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 import Section from './Section'
+// import * as All from '../data'
 import mateus from '../assets/img/fallecidos/mateus.jpg'
 import paula from '../assets/img/fallecidos/paula_lorca.jpg'
 import renzo from '../assets/img/fallecidos/renzo.jpg'
@@ -15,6 +17,10 @@ import alex from '../assets/img/fallecidos/alex.jpg'
 import mariana from '../assets/img/fallecidos/mariana.jpg'
 import maicol from '../assets/img/fallecidos/maicol.jpg'
 
+// bibliotecas de biblioteca parallax
+import { ReactBasicScroll } from "react-basic-scroll";
+import scrollConfig from "../basicScrollConfig";
+
 // import { Reset, media, Grid, totalCenter } from '../utils/constants'
 
 const GlobalStyle = createGlobalStyle`
@@ -23,12 +29,6 @@ const GlobalStyle = createGlobalStyle`
   height: 3rem; /* We need to change this value */
 }
 
-.sticky-inner {
-  position: fixed;
-  top: 20px;
-  right: 0;
-  z-index: 2;
-}
 @keyframes appear {
   0% {
    /* transform: translateY(50px);  */
@@ -56,35 +56,47 @@ const GlobalStyle = createGlobalStyle`
 .appear{
      animation: appear 4s cubic-bezier(0.390, 0.575, 0.565, 1.000);  
 }
-`
+h2{
+     /* font-family: 'Open Sans', Helvetica, Arial, sans-serif; */
+     /* font-family: 'Special Elite', Helvetica, Arial, cursive; */
+     /* font-size: 2em; */
+     font-family: 'Open Sans Condensed', Helvetica, Arial, sans-serif;
+     font-size: 1.7em;
+     line-height: 39px;
+     font-weight: 300;
+     color: black;
+}
 
+`
+const Box = styled.div`
+    max-width: 1160px;
+    margin: 0 auto;
+`
 const Parallax = styled.section`
 display: flex;
 `
-const ContentImage = styled.div`
-
+const BkgImage = styled.div`
     width: 100vw;
-    height: 350vh;
+    height: auto;
     background-repeat: repeat-y;
-    background-size: cover;
-    position: absolute;
-    animation: ${props => props.animation};
-    /* animation: appear 4s cubic-bezier(0.390, 0.575, 0.565, 1.000);   */
+    background-size: contain;
     background-image: url(${require(`../assets/img/bkg_mapav2_opt.jpg`)});
+    &::before{
+     content:'';
+	position: absolute;
+     top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(255, 255, 255, 0.466); 
+    }
+
 `
 const ContentInfo = styled.div`
      position: relative;
      width: 100%;
      margin-top: 86px;
      z-index: 2;
-     /* h4{
-          font-size: 8em;
-          font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-          font-weight: 600;
-          color: #5050503d;
-          position: absolute;
-
-     } */
      .patch{
           display: flex;
           justify-content: flex-end;
@@ -109,8 +121,20 @@ const sectionOne = [
           direction: 'reverse',
           margin: 'margin_right',
           name: 'Mateusz Maj',
-          descrip: 'Un profesor polaco, en medio de un forcejeo con su suegro, un exmilitar, con manifestantes a este se le escapa un tiro de su arma de fuego. Los hechos ocurrieron durante un saqueo a un supermercado de Maipú que Miguel Ángel Rojas, suegro de la víctima, pretendía defender.'
-
+          speed: '2',
+          config: {
+            from: 'top-top',
+            to: 'bottom-bottom',
+            direct: true,
+            props: {
+                '--ty': {
+                    from: '0px',
+                    to: '70px',
+                }
+            }
+        },
+        descrip: 'Un profesor polaco, en medio de un forcejeo con su suegro, un exmilitar, con manifestantes a este se le escapa un tiro de su arma de fuego. Los hechos ocurrieron durante un saqueo a un supermercado de Maipú que Miguel Ángel Rojas, suegro de la víctima, pretendía defender.'
+            
      }
 ]
 const sectionTwo = [
@@ -122,6 +146,7 @@ const sectionTwo = [
           direction: 'normal',
           margin: 'margin_left',
           name: 'Paula Lorca - Alicia Cofré',
+          speed: '3',
           descrip: 'Ambas víctimas fueron encontradas dentro de un supermercado Líder incendiado en la comuna de San Bernardo.'
      }
      , {
@@ -132,6 +157,7 @@ const sectionTwo = [
           direction: 'reverse',
           margin: 'margin_right',
           name: 'Renzo Barboza',
+          speed: '2',
           descrip: 'Encontrado dentro de un supermercado Líder incendiado en la comuna de Santiago (Matucana con Mapocho).​'
      }
      , {
@@ -314,6 +340,7 @@ const ScrollSection = ({ downRef }) => {
      // const handleDownButton = () =>{
      //      console.log(downRef.getBoundingClientRect());
      // } 
+     // eslint-disable-next-line no-unused-vars
      const handleScrollMap = () => {
           const map = mapRef.current;
           const { y } = map.getBoundingClientRect();
@@ -333,29 +360,49 @@ const ScrollSection = ({ downRef }) => {
           }
      }, [])
 
+
+
      return (
           <Parallax>
                <GlobalStyle />
                {/* <ContentImage ref={mapRef} className={animationEnter} style={{ transform: `translateY(-${offsetY * 0.5}px)` }} /> */}
                <ContentInfo ref={downRef}>
 
-                    <Section usersInfo={sectionOne} />
-                    <h1>
-                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos possimus laudantium corrupti similique dolor voluptatibus voluptatum id quos ratione, eos sequi vero temporibus quidem voluptates accusamus excepturi esse, dolore at!
-                    </h1>
-                    <h1>
-                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos possimus laudantium corrupti similique dolor voluptatibus voluptatum id quos ratione, eos sequi vero temporibus quidem voluptates accusamus excepturi esse, dolore at!
-                    </h1>
-                    <h1>
-                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos possimus laudantium corrupti similique dolor voluptatibus voluptatum id quos ratione, eos sequi vero temporibus quidem voluptates accusamus excepturi esse, dolore at!
-                    </h1>
-                    <h1>
-                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos possimus laudantium corrupti similique dolor voluptatibus voluptatum id quos ratione, eos sequi vero temporibus quidem voluptates accusamus excepturi esse, dolore at!
-                    </h1>
+                    <ReactBasicScroll config={scrollConfig}>
+                         <Box>
+                              <h2 className={`o-anim-ty o-apply-ty--x1`} >
+                              Dentro de las manifestaciones ocurridas en el país se cuenta más de una treintena de muertes. Estas ocurrieron en diferentes contextos y circunstancias.
+                              Durante los primeros días, el gobierno indicó que los fallecidos estaban «todos asociados a quemas ysaqueos».1​ El 22 de octubre de 2019, el general Iturriaga señaló que eran siete las personasfallecidas en la Región Metropolitana, agregando que «no los quiero acusar pero murieron calcinadospor haber estado en el lugar donde se produjeron los actos vandálicos»
+                              </h2>
+                        </Box>
+                    </ReactBasicScroll>
 
-                    {/* <Section usersInfo={sectionTwo} /> */}
-                    {/* <ContentImage ref={mapRef} className={animationEnter} style={{ transform: `translateY(-${offsetY * 0.5}px)` }} />   */}
-                    {/* <Section usersInfo={sectionThree} /> */}
+                    <ReactBasicScroll config={scrollConfig}>
+                         <Box>
+                              <h2 className={`o-anim-ty o-apply-ty--x2`} >
+                              El presidente Piñera, en tanto, se refirió recién una semana después de los primeros fallecimientos, señalando que los incidentes y disturbios «han significado una pérdida de vidas inocentes, algunas, pero todas son lamentables», lo que le valió críticas por cuestionar las circunstancias de algunas de los muertes.3​4​
+                              </h2>
+                        </Box>
+                    </ReactBasicScroll>
+
+                    <ReactBasicScroll config={scrollConfig}>
+                         <Box>
+                              <h2 className={`o-anim-ty o-apply-ty--x2`} >
+                              El Instituto Nacional de Derechos Humanos indicó que 5 personas habrían fallecido producto de la presunta acción del Estado y algunos casos ya fueron presentados en tribunales. Un militar quedó en prisión preventiva,5​ mientras un infante de marina quedó en libertad con firma quincenal y fue reincorporado a la Armada al día siguiente.6​7​ Ante las consultas por el uso de fuerza letal por parte de militares, el contraalmirante a cargo de la seguridad en la Región de Valparaíso aclaró que, si bien carabineros y policía cuentan con elementos disuasivos, las Fuerzas Armadas ocupan munición de guerra, no «armamento de juguete».8​
+                              </h2>
+                        </Box>
+                    </ReactBasicScroll>
+
+                    <BkgImage>
+
+                    <Section usersInfo={sectionOne} />
+                    <Section usersInfo={sectionTwo} />
+                    {/* <ReactBasicScroll config={scrollConfig}> */}
+                        {/* <h1 style="{{opacity: 'var(--opacity)'}}">Hello world!</h1> */}
+                        {/* <ContentImage ref={mapRef} className={`${animationEnter}`} />   */}
+                    {/* </ReactBasicScroll> */}
+                    
+                    <Section usersInfo={sectionThree} />
                
                {/* <ContentImage 
                     ref={mapRef} 
@@ -363,27 +410,30 @@ const ScrollSection = ({ downRef }) => {
                     style={{ transform: `translateY(-${offsetY * 0.5}px)` }} 
                /> */}
 
-                {/* <Section usersInfo={sectionFour} /> 
+                <Section usersInfo={sectionFour} /> 
 
-                 <Section usersInfo={sectionFive} />  */}
+                <Section usersInfo={sectionFive} /> 
 
-                  {/* <ContentImage 
+                {/* <ReactBasicScroll config={scrollConfig}>
+                    <ContentImage 
+                        ref={mapRef} 
+                        className={`o-anim-ty o-apply-ty--x1`}
+                    /> 
+                </ReactBasicScroll> */}
+
+                <Section usersInfo={sectionSix} />   
+
+                <Section usersInfo={sectionSeven} />  
+
+                {/* <ContentImage 
                     ref={mapRef} 
                     className={animationEnter} 
-                    style={{ transform: `translateY(-${offsetY * 0.5}px)` }} 
-               />  */}
+                    // style={{ transform: `translateY(-${offsetY * 0.5}px)` }} 
+                /> */}
 
-                  {/* <Section usersInfo={sectionSix} />   
+                    <Section usersInfo={sectionEight} /> 
 
-                   <Section usersInfo={sectionSeven} />   */}
-
-                   {/* <ContentImage 
-                    ref={mapRef} 
-                    className={animationEnter} 
-                    style={{ transform: `translateY(-${offsetY * 0.5}px)` }} 
-               /> */}
-
-                    {/* <Section usersInfo={sectionEight} />  */}
+                    </BkgImage>
 
                </ContentInfo>
           </Parallax>

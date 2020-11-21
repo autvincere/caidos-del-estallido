@@ -8,13 +8,15 @@ import ScrollSection from './components/ScrollSection';
 
 const GlobalStyle = createGlobalStyle`
 ${reset};
+body{
+  background: linear-gradient(0deg, #CCCCCC 12%, #FFFFFF 64%);
+}
 a{color: #ffffff; text-decoration: none;}
 h1{
   font-size: 3em;
   font-family: 'Special Elite', Helvetica, Arial, cursive;
   text-transform: uppercase;
 }
-
 `
 const ContentLogo = styled(Logo)`
     position: fixed;

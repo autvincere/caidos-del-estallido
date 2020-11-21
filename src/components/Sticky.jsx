@@ -8,17 +8,20 @@ const GlobalStyle = createGlobalStyle`
 }
 `
 const Texto = styled.div`
-               position: absolute;
-               right: 0;
+     position: sticky;
+     top: 0;
+     display: flex;
+     flex-direction: row-reverse;
+     transition: all .7s ease-in;
           h3{
-                    font-family: 'Special Elite', Helvetica, Arial, cursive;
-                    font-size: 1.5em;
-                    width:300px;
-                    padding: 10px 4px 3px 8px;
-                    background: #eaeaea;
-                    border-top: 2px solid black;
-                    border-left: 2px solid black;
-                    border-bottom: 2px solid black;
+               font-family: 'Special Elite', Helvetica, Arial, cursive;
+               font-size: 1.5em;
+               width:300px;
+               padding: 10px 4px 3px 8px;
+               background: #eaeaea;
+               border-top: 2px solid black;
+               border-left: 2px solid black;
+               border-bottom: 2px solid black;
           }
           `
 const Stiky = (props) => {
