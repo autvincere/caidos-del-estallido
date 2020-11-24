@@ -9,7 +9,7 @@ import ScrollSection from './components/ScrollSection';
 const GlobalStyle = createGlobalStyle`
 ${reset};
 body{
-  background: linear-gradient(0deg, #CCCCCC 12%, #FFFFFF 64%);
+  /* background: linear-gradient(0deg, #CCCCCC 12%, #FFFFFF 64%); */
 }
 a{color: #ffffff; text-decoration: none;}
 h1{
@@ -17,15 +17,22 @@ h1{
   font-family: 'Special Elite', Helvetica, Arial, cursive;
   text-transform: uppercase;
 }
+h2{
+     /* font-family: 'Open Sans', Helvetica, Arial, sans-serif; */
+     /* font-family: 'Special Elite', Helvetica, Arial, cursive; */
+     /* font-size: 2em; */
+     font-family: 'Open Sans Condensed', Helvetica, Arial, sans-serif;
+     font-size: 1.7em;
+     line-height: 39px;
+     font-weight: 300;
+     color: black;
+}
 `
 const ContentLogo = styled(Logo)`
     position: fixed;
-    z-index: 3;
+    z-index: 4;
     margin: 10px 0 0 10px;
 `
-// const CenterContent= styled.div`
-
-// `
 function App() {
   const downRef = useRef()
   const scrollToRef = (ref) => window.scrollTo({ behavior: 'smooth', top: ref.current.offsetTop })
@@ -39,8 +46,8 @@ function App() {
   return (
     <Fragment>
        <Helmet>
-        <title>Ellos son || Estudio Jurídico</title>
-        <meta name="description" content="Estudio jurídico conformado por un equipo multidisciplinario de abogados y asesores, cuyo desempeño y asesoría integral está abocada a la representación de nuestros patrocinados en litigios, la prevención y solución alternativa de conflictos" />
+        <title>Ellos son || Estallido social en Chile</title>
+        <meta name="description" content="Este anexo indica las personas fallecidas durante las protestas ocurridas en Chile durante fines de 2019. Las protestas en Chile son una serie de manifestaciones en contra de la desigualdad, el modelo económico, el alto costo de vida, entre otros, que surgieron en la sociedad chilena como forma de expresar el malestar hacia las autoridades." />
 
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet"></link>
         <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
@@ -50,12 +57,9 @@ function App() {
       </Helmet>
 
       <GlobalStyle />
-      {/* <Grid> */}
         <ContentLogo />
-        <Splash handleDown = {handleDown}/>
-        <ScrollSection downRef={downRef}/>
-      {/* </Grid> */}
-
+        <Splash handleDown = { handleDown }/>
+        <ScrollSection downRef={ downRef }/>
     </Fragment>
   );
 }

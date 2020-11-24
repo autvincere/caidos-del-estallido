@@ -3,25 +3,32 @@ import React, { useState, useEffect, useRef } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 import Section from './Section'
 // import * as All from '../data'
-import mateus from '../assets/img/fallecidos/mateus.jpg'
-import paula from '../assets/img/fallecidos/paula_lorca.jpg'
-import renzo from '../assets/img/fallecidos/renzo.jpg'
-import kaiser from '../assets/img/fallecidos/kaiser.jpg'
-import romario from '../assets/img/fallecidos/romario.jpg'
-import kevin from '../assets/img/fallecidos/kevin.jpg'
-import jose from '../assets/img/fallecidos/jose.jpg'
-import manuel from '../assets/img/fallecidos/manuel.jpg'
-import joseU from '../assets/img/fallecidos/joseU.jpg'
-import noImage from '../assets/img/fallecidos/noImage.jpg'
-import alex from '../assets/img/fallecidos/alex.jpg'
-import mariana from '../assets/img/fallecidos/mariana.jpg'
-import maicol from '../assets/img/fallecidos/maicol.jpg'
+import{ 
+     sectionOne,
+     sectionTwo,
+     sectionThree,
+     sectionFour,
+     sectionFive,
+     sectionSix,
+     sectionSeven,
+     sectionEight,
+     sectionNine,
+     sectionTen,
+     sectionEleven,
+     sectionTwelve,
+     sectionThirteen,
+     sectionFourteen,
+     sectionFiveteen,
+     sectionSixteen,
+     sectionSeventeen,
+     sectionEightteen
+} from '../data'
 
 // bibliotecas de biblioteca parallax
 import { ReactBasicScroll } from "react-basic-scroll";
 import scrollConfig from "../basicScrollConfig";
-
-// import { Reset, media, Grid, totalCenter } from '../utils/constants'
+import IntroText from './IntroText';
+import Sources from './Sources';
 
 const GlobalStyle = createGlobalStyle`
 .sticky-wrapper {
@@ -56,22 +63,8 @@ const GlobalStyle = createGlobalStyle`
 .appear{
      animation: appear 4s cubic-bezier(0.390, 0.575, 0.565, 1.000);  
 }
-h2{
-     /* font-family: 'Open Sans', Helvetica, Arial, sans-serif; */
-     /* font-family: 'Special Elite', Helvetica, Arial, cursive; */
-     /* font-size: 2em; */
-     font-family: 'Open Sans Condensed', Helvetica, Arial, sans-serif;
-     font-size: 1.7em;
-     line-height: 39px;
-     font-weight: 300;
-     color: black;
-}
+`
 
-`
-const Box = styled.div`
-    max-width: 1160px;
-    margin: 0 auto;
-`
 const Parallax = styled.section`
 display: flex;
 `
@@ -81,15 +74,15 @@ const BkgImage = styled.div`
     background-repeat: repeat-y;
     background-size: contain;
     background-image: url(${require(`../assets/img/bkg_mapav2_opt.jpg`)});
-    &::before{
-     content:'';
-	position: absolute;
-     top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: rgba(255, 255, 255, 0.466); 
-    }
+    /* &::before{
+          content:'';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background-color: rgba(255, 255, 255, 0.466); 
+    } */
 
 `
 const ContentInfo = styled.div`
@@ -111,218 +104,6 @@ const ContentInfo = styled.div`
      }
           
 `
-const sectionOne = [
-     {
-
-          image: mateus,
-          fecha: '19 de octubre',
-          causaMuerte:'Disparo',
-          causaMuertePosition:'text_right',
-          direction: 'reverse',
-          margin: 'margin_right',
-          name: 'Mateusz Maj',
-          speed: '2',
-          config: {
-            from: 'top-top',
-            to: 'bottom-bottom',
-            direct: true,
-            props: {
-                '--ty': {
-                    from: '0px',
-                    to: '70px',
-                }
-            }
-        },
-        descrip: 'Un profesor polaco, en medio de un forcejeo con su suegro, un exmilitar, con manifestantes a este se le escapa un tiro de su arma de fuego. Los hechos ocurrieron durante un saqueo a un supermercado de Maipú que Miguel Ángel Rojas, suegro de la víctima, pretendía defender.'
-            
-     }
-]
-const sectionTwo = [
-     {
-          image: paula,
-          fecha: '20 de octubre',
-          causaMuerte:'Calcinada',
-          causaMuertePosition:'text_left',
-          direction: 'normal',
-          margin: 'margin_left',
-          name: 'Paula Lorca - Alicia Cofré',
-          speed: '3',
-          descrip: 'Ambas víctimas fueron encontradas dentro de un supermercado Líder incendiado en la comuna de San Bernardo.'
-     }
-     , {
-          image: renzo,
-          fecha: '18 de octubre',
-          causaMuerte:'Calcinado',
-          causaMuertePosition:'text_right',
-          direction: 'reverse',
-          margin: 'margin_right',
-          name: 'Renzo Barboza',
-          speed: '2',
-          descrip: 'Encontrado dentro de un supermercado Líder incendiado en la comuna de Santiago (Matucana con Mapocho).​'
-     }
-     , {
-          image: kaiser,
-          fecha: '18 de octubre',
-          causaMuerte:'Calcinados',
-          causaMuertePosition:'text_left',
-          direction: 'normal',
-          margin: 'margin_left',
-          name: 'Manuel Muga(59) - Andrés Ponce(38) - Yoshua Osorio(17) - Julián Pérez(51) - Luis Salas(47)',
-          descrip: 'Encontrados calcinados en la bodega incendiada de la empresa Kayser en Renca. Las autopsias de los cuerpos han determinado la existencia de heridas de bala en algunos casos.​'
-     }
-     , {
-          image: romario,
-          fecha: '18 de octubre',
-          causaMuerte:'Disparo',
-          causaMuertePosition:'text_right',
-          direction: 'reverse',
-          margin: 'margin_right',
-          name: 'Romario Veloz (26)',
-          descrip: 'Fallecido por disparos realizados por militares en las cercanías del terminal de buses de La Serena.​'
-     }
-     , {
-          image: kevin,
-          fecha: '18 de octubre',
-          causaMuerte:'Acribillado',
-          causaMuertePosition:'text_left',
-          direction: 'normal',
-          margin: 'margin_left',
-          name: 'Kevin Gómez (23)',
-          descrip: 'Fallecido por disparos realizados por militares fuera de una tienda La Polar en Coquimbo.'
-     }
-]
-const sectionThree =[
-     {
-     image: jose,
-     fecha: '21 de octubre de 2019',
-     causaMuerte:'Accidente',
-     causaMuertePosition:'text_right',
-     direction: 'reverse',
-     margin: 'margin_right',
-     name:'José Arancibia (74) - Eduardo Caro del Pino (44)',
-     descrip: 'Encontrados en una tienda Construmart incendiada en la comuna de La Pintana (Santa Rosa con El Observatorio).'
-     }
-   , {
-        image: manuel,
-        fecha: '18 de octubre',
-        causaMuerte:'atropellado',
-        causaMuertePosition:'text_left',
-        direction: 'normal',
-        margin: 'margin_left',
-        name: 'Manuel Rebolledo (22)',
-        descrip: 'En una manifestación en Talcahuano es atropellado por un camión de infantería de marina.'
-     }
-     , {
-          image: joseU,
-          fecha: '18 de octubre',
-          causaMuerte:'Accidente',
-          causaMuertePosition:'text_right',
-          direction: 'reverse',
-          margin: 'margin_right',
-          name: 'José Uribe (25)',
-          descrip: 'Fallecido por disparos en Curicó, fuera de la zona de emergencia. Inicialmente la hipótesis de investigación era una muerte producto de disparos de militares, pero posteriores pesquisas señalaron cómo culpable al empresario de Lontué, Francisco José Fuenzalida Calvo. Según la fiscalía, solo minutos antes del asesinato el empresario había dejado 3 personas heridas de bala en la alameda de Curicó'
-       }
-       , {
-          image: noImage,
-          fecha: '18 de octubre',
-          causaMuerte:'Electrocutado',
-          causaMuertePosition:'text_left',
-          direction: 'normal',
-          margin: 'margin_left',
-          name: 'Sin identificar',
-          descrip: 'Fallecido por electrocutación en un supermercado en la comuna de Santiago (Barrio Franklin)'
-       }
-       , {
-          image: alex,
-          fecha: '18 de octubre',
-          causaMuerte:'Golpiza',
-          causaMuertePosition:'text_right',
-          direction: 'reverse',
-          margin: 'margin_right',
-          name: 'Alex Núñez (39)',
-          descrip: 'Fallecido por una golpiza realizada por carabineros en la comuna de Maipú, (estación Del Sol). Inicialmente no fue incluido por el gobierno de Chile en la nómina oficial de fallecidos,​ siendo reconocido por el subsecretario de Interior el día 23.'
-       }
-       , {
-          image: mariana,
-          fecha: '18 de octubre',
-          causaMuerte:'Bala',
-          causaMuertePosition:'text_left',
-          direction: 'normal',
-          margin: 'margin_left',
-          name: 'Mariana Díaz (34)',
-          descrip: 'Fallecida por el impacto de una bala perdida en su casa de la comuna de Lo Prado.'
-       }
-  ]
-  const sectionFour = [
-     {
-
-          image: noImage,
-          fecha: '22 de octubre de 2019',
-          causaMuerte:'Atropello',
-          causaMuertePosition:'text_right',
-          direction: 'reverse',
-          margin: 'margin_right',
-          name: 'Joel Triviño (4) - Cardenio Prado (37)',
-          descrip: 'Producto del atropello, a un grupo de manifestantes que estaban haciendo un cacerolazo en San Pedro de la Paz. El conductor estaba en estado de ebriedad.'
-
-     }
-]
-const sectionFive = [
-     {
-
-          image: noImage,
-          fecha: '24 de octubre de 2019',
-          causaMuerte:'Disparos',
-          causaMuertePosition:'text_left',
-          direction: 'normal',
-          margin: 'margin_left',
-          name: 'Agustín Coro (52)',
-          descrip: 'Fallecido por disparos realizados el día 22 por un comerciante en la comuna de Puente Alto que temía un asalto; la víctima no habría estado involucrado en el conflicto, pero habría recibido el balazo a distancia.'
-
-     }
-]
-const sectionSix = [
-     {
-
-          image: maicol,
-          fecha: '25 de octubre de 2019',
-          causaMuerte:'Calcinado',
-          causaMuertePosition:'text_right',
-          direction: 'reverse',
-          margin: 'margin_right',
-          name: 'Maicol Yagual (22)',
-          descrip: 'Encontrado calcinado en un supermercado Alvi en la comuna de Maipú.'
-
-     }
-]
-const sectionSeven = [
-     {
-
-          image: noImage,
-          fecha: '1 de noviembre de 2019',
-          causaMuerte:'Acuchillado',
-          causaMuertePosition:'text_left',
-          direction: 'normal',
-          margin: 'margin_left',
-          name: 'Héctor Martínez (57)',
-          descrip: 'Locatario de una tienda de muebles en el Barrio Franklin, recibió un ataque con cuchillo por parte de un grupo de saqueadores, en el contexto del estallido social, al tratar de defender su local comercial durante la madrugada de ese día.'
-
-     }
-]
-const sectionEight = [
-     {
-
-          image: noImage,
-          fecha: '12 de noviembre de 2019',
-          causaMuerte:'Atropellado',
-          causaMuertePosition:'text_right',
-          direction: 'reverse',
-          margin: 'margin_right',
-          name: 'Robinson Gómez (27)',
-          descrip: 'Atropellado por un camión en la madrugada de aquel día, momento en que un grupo de personas realizaban una barricada para cortar la ruta 23-CH en Calama.'
-
-     }
-]
 
 const ScrollSection = ({ downRef }) => {
 
@@ -365,74 +146,31 @@ const ScrollSection = ({ downRef }) => {
      return (
           <Parallax>
                <GlobalStyle />
-               {/* <ContentImage ref={mapRef} className={animationEnter} style={{ transform: `translateY(-${offsetY * 0.5}px)` }} /> */}
+
                <ContentInfo ref={downRef}>
-
-                    <ReactBasicScroll config={scrollConfig}>
-                         <Box>
-                              <h2 className={`o-anim-ty o-apply-ty--x1`} >
-                              Dentro de las manifestaciones ocurridas en el país se cuenta más de una treintena de muertes. Estas ocurrieron en diferentes contextos y circunstancias.
-                              Durante los primeros días, el gobierno indicó que los fallecidos estaban «todos asociados a quemas ysaqueos».1​ El 22 de octubre de 2019, el general Iturriaga señaló que eran siete las personasfallecidas en la Región Metropolitana, agregando que «no los quiero acusar pero murieron calcinadospor haber estado en el lugar donde se produjeron los actos vandálicos»
-                              </h2>
-                        </Box>
-                    </ReactBasicScroll>
-
-                    <ReactBasicScroll config={scrollConfig}>
-                         <Box>
-                              <h2 className={`o-anim-ty o-apply-ty--x2`} >
-                              El presidente Piñera, en tanto, se refirió recién una semana después de los primeros fallecimientos, señalando que los incidentes y disturbios «han significado una pérdida de vidas inocentes, algunas, pero todas son lamentables», lo que le valió críticas por cuestionar las circunstancias de algunas de los muertes.3​4​
-                              </h2>
-                        </Box>
-                    </ReactBasicScroll>
-
-                    <ReactBasicScroll config={scrollConfig}>
-                         <Box>
-                              <h2 className={`o-anim-ty o-apply-ty--x2`} >
-                              El Instituto Nacional de Derechos Humanos indicó que 5 personas habrían fallecido producto de la presunta acción del Estado y algunos casos ya fueron presentados en tribunales. Un militar quedó en prisión preventiva,5​ mientras un infante de marina quedó en libertad con firma quincenal y fue reincorporado a la Armada al día siguiente.6​7​ Ante las consultas por el uso de fuerza letal por parte de militares, el contraalmirante a cargo de la seguridad en la Región de Valparaíso aclaró que, si bien carabineros y policía cuentan con elementos disuasivos, las Fuerzas Armadas ocupan munición de guerra, no «armamento de juguete».8​
-                              </h2>
-                        </Box>
-                    </ReactBasicScroll>
-
+                    <IntroText />
                     <BkgImage>
 
-                    <Section usersInfo={sectionOne} />
-                    <Section usersInfo={sectionTwo} />
-                    {/* <ReactBasicScroll config={scrollConfig}> */}
-                        {/* <h1 style="{{opacity: 'var(--opacity)'}}">Hello world!</h1> */}
-                        {/* <ContentImage ref={mapRef} className={`${animationEnter}`} />   */}
-                    {/* </ReactBasicScroll> */}
-                    
-                    <Section usersInfo={sectionThree} />
-               
-               {/* <ContentImage 
-                    ref={mapRef} 
-                    className={animationEnter} 
-                    style={{ transform: `translateY(-${offsetY * 0.5}px)` }} 
-               /> */}
+                         <Section usersInfo={sectionOne} />
+                         <Section usersInfo={sectionTwo} />
+                         <Section usersInfo={sectionThree} />
+                         <Section usersInfo={sectionFour} /> 
+                         <Section usersInfo={sectionFive} /> 
+                         <Section usersInfo={sectionSix} />   
+                         <Section usersInfo={sectionSeven} />  
+                         <Section usersInfo={sectionEight} />
+                         <Section usersInfo={sectionNine} />
+                         <Section usersInfo={sectionTen} />
+                         <Section usersInfo={sectionEleven} />
+                         <Section usersInfo={sectionTwelve} />
+                         <Section usersInfo={sectionThirteen} />
+                         <Section usersInfo={sectionFourteen} />
+                         <Section usersInfo={sectionFiveteen} />
+                         <Section usersInfo={sectionSixteen} />
+                         <Section usersInfo={sectionSeventeen} />
+                         <Section usersInfo={sectionEightteen} />
 
-                <Section usersInfo={sectionFour} /> 
-
-                <Section usersInfo={sectionFive} /> 
-
-                {/* <ReactBasicScroll config={scrollConfig}>
-                    <ContentImage 
-                        ref={mapRef} 
-                        className={`o-anim-ty o-apply-ty--x1`}
-                    /> 
-                </ReactBasicScroll> */}
-
-                <Section usersInfo={sectionSix} />   
-
-                <Section usersInfo={sectionSeven} />  
-
-                {/* <ContentImage 
-                    ref={mapRef} 
-                    className={animationEnter} 
-                    // style={{ transform: `translateY(-${offsetY * 0.5}px)` }} 
-                /> */}
-
-                    <Section usersInfo={sectionEight} /> 
-
+                         <Sources />
                     </BkgImage>
 
                </ContentInfo>

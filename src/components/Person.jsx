@@ -22,6 +22,10 @@ const GlobalStyle = createGlobalStyle`
 .text_left{
      left: -30%; 
 }
+.max_width{
+     font-size: 4.5em !important;
+    width: 465px !important;
+}
 `
 const ContentImage = styled.div`
      display: block;
@@ -90,6 +94,8 @@ const Person = ({ usersInfo }) => {
                {    usersInfo.map(user => {
                     let speed = user.speed ? user.speed : '1';
                     let config = user.config ? user.config : scrollConfig;
+                    console.log(user.causaMuerte.length);
+                    let lengthCausa = user.causaMuerte.length >= 7 ? 'max_width' : console.log('menor a 1') ;
                     return (
                          <ContentPerson className={user.direction} key={user.name}>
                               <div>
@@ -106,7 +112,7 @@ const Person = ({ usersInfo }) => {
                               <p className={user.margin}>{user.descrip}</p>
                               
                               <ReactBasicScroll config={config}>
-                                   <h4 className={`${user.causaMuertePosition} o-anim-ty o-apply-ty--x${speed}`}>{user.causaMuerte}</h4>
+                                   <h4 className={`${user.causaMuertePosition} o-anim-ty o-apply-ty--x${speed} ${lengthCausa}`}>{user.causaMuerte}</h4>
                               </ReactBasicScroll>
 
                          </ContentPerson>

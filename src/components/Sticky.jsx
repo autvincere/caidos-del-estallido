@@ -19,9 +19,7 @@ const Texto = styled.div`
                width:300px;
                padding: 10px 4px 3px 8px;
                background: #eaeaea;
-               border-top: 2px solid black;
-               border-left: 2px solid black;
-               border-bottom: 2px solid black;
+               border: 2px solid black;
           }
           `
 const Stiky = (props) => {

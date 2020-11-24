@@ -8,6 +8,7 @@ const Section = styled.section`
 height: 100vh;
 position: relative;
 z-index: 3;
+background: linear-gradient(180deg, #CCCCCC -17%, #FFFFFF 64%);
 /* margin-top: 30px; */
 
 /**
@@ -47,9 +48,6 @@ h1{
      text-align: center;
      padding-top: 30px;
 }
-h3{
-
-}
 article{
      max-width: 316px;
     position: absolute;
@@ -73,13 +71,14 @@ article{
           }
      }
      p{
-          font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+          font-family: 'Open Sans Condensed', Helvetica, Arial, sans-serif;
           font-weight: 500;
     color: #000000;
     margin-top: -10px;
     text-align: right;
-    font-size: 1.1em;
-    line-height: 20px;
+    font-size: 1.6em;
+    line-height: 30px;
+    text-shadow: 4px 1px 5px #ffffff;
 
      }
    
