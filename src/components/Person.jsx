@@ -1,43 +1,53 @@
-import React, { Fragment } from 'react'
-import styled, { createGlobalStyle } from 'styled-components'
+import React, { Fragment, useRef } from 'react'
+import styled, { keyframes } from 'styled-components'
 
 import { ReactBasicScroll } from "react-basic-scroll";
 import scrollConfig from "../basicScrollConfig";
+import LazyLoad from "react-lazyload";
 
-const GlobalStyle = createGlobalStyle`
+const loadingAnimation = keyframes`
+  0% {
+    background-color: #fff;
+  }
+  50% {
+    background-color: #ccc;
+  }
+  100% {
+    background-color: #fff;
+  }
+`;
+const Placeholder = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  animation: ${loadingAnimation} 1s infinite;
+`;
 
-.normal{  flex-direction: row; }
-.reverse{ flex-direction: row-reverse; }
+const StyledImage = styled.img`
+          max-width: 590px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          object-fit: cover;
+`;
 
-.margin_left{
-     right: -180px;
-}
-.margin_right{
-     /* margin: 0px -42px 0px 0px; */
-     left: -180px;
-}
-.text_right{
-     right: -30%; 
-}
-.text_left{
-     left: -30%; 
-}
-.max_width{
-     font-size: 4.5em !important;
-    width: 465px !important;
-}
-`
 const ContentImage = styled.div`
      display: block;
-     width: 100%;
-     max-width: 460px;
-     background-color: red;
-	height: 340px;
-	position: relative;
-     overflow: hidden;
-     img{
+    /* width: 100%; */
+    max-width: 460px;
+    height: 340px;
+    position: relative;
+    overflow: hidden;
+    width: 460px;
+     /* img{
           max-width: 590px;
-     }
+          position: absolute;
+          top: 0;
+          left: 0;
+          object-fit: cover;
+     } */
 `
 const ContentPerson = styled.article`
      display: flex;
@@ -87,21 +97,37 @@ const ContentPerson = styled.article`
 
 const Person = ({ usersInfo }) => {
      // console.log(usersInfo);
+     const refPlaceholder = useRef();
+     const removePlaceholder = () => {
+          refPlaceholder.current.remove();
+        };
 
      return (
           <Fragment>
-               <GlobalStyle />
-               {    usersInfo.map(user => {
+
+               {    usersInfo.map( ( user, i)  => {
                     let speed = user.speed ? user.speed : '1';
                     let config = user.config ? user.config : scrollConfig;
-                    console.log(user.causaMuerte.length);
-                    let lengthCausa = user.causaMuerte.length >= 7 ? 'max_width' : console.log('menor a 1') ;
+                    // console.log(user.causaMuerte.length);
+                    let lengthCausa = user.causaMuerte.length >= 7 ? 'max_width' : '' ;
                     return (
                          <ContentPerson className={user.direction} key={user.name}>
                               <div>
                                    <ReactBasicScroll config={config}>
-                                        <ContentImage >
-                                             <img src={user.image} alt={user.name} className={`o-anim-ty o-apply-ty--x-1`}/>
+                                        <ContentImage>
+                                           
+                                             <Placeholder ref={refPlaceholder} />
+                                             <LazyLoad>
+                                                  <StyledImage 
+                                                       key={i} 
+                                                       src={user.image} 
+                                                       alt={user.name} 
+                                                       onLoad={removePlaceholder}
+                                                       onError={removePlaceholder}
+                                                       className={`o-anim-ty o-apply-ty--x-1`}
+                                                       />
+                                             </LazyLoad>
+
                                         </ContentImage>
                                         
                                    </ReactBasicScroll>

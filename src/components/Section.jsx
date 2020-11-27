@@ -1,42 +1,6 @@
 import React, { Fragment, useState, useEffect, useRef } from 'react'
-import { createGlobalStyle } from 'styled-components'
 import Stiky from './Sticky'
 import Person from './Person'
-
-const GlobalStyle = createGlobalStyle`
-.sticky-wrapper {
-  position: relative;
-  height: 3rem; /* We need to change this value */
-}
-
-/* .sticky-inner {
-  position: fixed;
-  top: 20px;
-  right: 0;
-} */
-
-.sticky-inner {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    transition: all .7s ease-in;
-}
-.normal{
-     flex-direction: row;
-}
-.reverse{flex-direction: row-reverse;}
-
-.margin_left{
-     margin: 0px 0px 0px -42px;
-}
-.margin_right{
-     margin: 0px -42px 0px 0px;
-}
-.align{
-     max-width: 1100px;
-     margin: 138px auto;
-     }
-`
 
 const Section = ({ usersInfo }) => {
 // console.log(usersInfo);
@@ -83,7 +47,7 @@ const Section = ({ usersInfo }) => {
 
      return (
           <Fragment>
-               <GlobalStyle />
+              
                <div ref={stickyRef} className="align">
 
                     <div className={isSticky}>

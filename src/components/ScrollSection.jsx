@@ -1,6 +1,7 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useRef } from 'react'
-import styled, { createGlobalStyle } from 'styled-components'
+import React from 'react'
+import styled from 'styled-components'
+import { ReactBasicScroll } from "react-basic-scroll";
+import scrollConfig from "../basicScrollConfig";
 import Section from './Section'
 // import * as All from '../data'
 import{ 
@@ -23,47 +24,9 @@ import{
      sectionSeventeen,
      sectionEightteen
 } from '../data'
-
-// bibliotecas de biblioteca parallax
-import { ReactBasicScroll } from "react-basic-scroll";
-import scrollConfig from "../basicScrollConfig";
 import IntroText from './IntroText';
 import Sources from './Sources';
 
-const GlobalStyle = createGlobalStyle`
-.sticky-wrapper {
-  position: relative;
-  height: 3rem; /* We need to change this value */
-}
-
-@keyframes appear {
-  0% {
-   /* transform: translateY(50px);  */
-   opacity: 0;
-    }
-
-  100% {
-     /* transform: translateY(0); */
-     opacity: 1;  
-    } 
-}
-
-@keyframes dissappear {
-  0% {
-   /* transform: translateY(50px);  */
-   opacity: 1;
-    }
-
-  100% {
-     /* transform: translateY(0); */
-     opacity: 0;  
-    } 
-}
-
-.appear{
-     animation: appear 4s cubic-bezier(0.390, 0.575, 0.565, 1.000);  
-}
-`
 
 const Parallax = styled.section`
 display: flex;
@@ -74,16 +37,14 @@ const BkgImage = styled.div`
     background-repeat: repeat-y;
     background-size: contain;
     background-image: url(${require(`../assets/img/bkg_mapav2_opt.jpg`)});
-    /* &::before{
-          content:'';
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          background-color: rgba(255, 255, 255, 0.466); 
-    } */
-
+`
+const BkgImageFooter = styled.div`
+    width: 100%;
+    height: 626px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(${require(`../assets/img/bkg_footer.jpg`)});
+    margin-bottom: -160px;
 `
 const ContentInfo = styled.div`
      position: relative;
@@ -104,48 +65,41 @@ const ContentInfo = styled.div`
      }
           
 `
+const Footer = styled.div`
+     display: flex;
+     flex-direction: column;
+     max-width: 1150px;
+     position: relative;
+     margin: 0 auto;
+    padding-bottom: 50px;
+     z-index: 1;
+     font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+     line-height: 24px;
+     a{
+          color: #222222;
+          text-decoration: none;
+          font-weight: 600;
+     }
+     h3{
+          font-family: 'Special Elite',Helvetica,Arial,cursive;
+          font-size: 3em;
+          margin-bottom: 10px;
+     }
+     .listaref{
+          column-count: 3;
+          column-gap: 30px;
+          background-color: #ffffff42;
+          padding-top: 17px;
+     }
+     li{
+          margin-bottom: 15px;
+     }
 
+`
 const ScrollSection = ({ downRef }) => {
-
-     const [offsetY, setOffsetY] = useState(0);
-     const [animationEnter, setAnimationEnter] = useState('')
-
-     const mapRef = useRef()
-     // const downRef = useRef()
-
-     const handleScroll = () => {
-          // console.log(window.pageYOffset)
-          return setOffsetY(window.pageYOffset);
-     }
-
-     // const handleDownButton = () =>{
-     //      console.log(downRef.getBoundingClientRect());
-     // } 
-     // eslint-disable-next-line no-unused-vars
-     const handleScrollMap = () => {
-          const map = mapRef.current;
-          const { y } = map.getBoundingClientRect();
-
-          const animationAppear = y >= 0 ? 'appear' : 'appear';
-          // console.log(animationAppear);
-          setAnimationEnter(animationAppear)
-     }
-
-     useEffect(() => {
-          window.addEventListener("scroll", handleScroll);
-          // window.addEventListener("scroll", handleScrollMap);
-
-          return () => {
-               window.removeEventListener("scroll", handleScroll);
-               // window.removeEventListener("scroll", handleScrollMap);
-          }
-     }, [])
-
-
 
      return (
           <Parallax>
-               <GlobalStyle />
 
                <ContentInfo ref={downRef}>
                     <IntroText />
@@ -170,7 +124,16 @@ const ScrollSection = ({ downRef }) => {
                          <Section usersInfo={sectionSeventeen} />
                          <Section usersInfo={sectionEightteen} />
 
-                         <Sources />
+                         <Footer>
+                         <ReactBasicScroll config={scrollConfig}>
+                              <BkgImageFooter className={`o-anim-ty o-apply-ty--x2`}/>
+                         </ReactBasicScroll>
+                              <Sources />
+                              {/* <h1>
+                                   Indignate - involúcrate y participa
+                              </h1> */}
+                         </Footer>
+
                     </BkgImage>
 
                </ContentInfo>

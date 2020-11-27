@@ -71,15 +71,16 @@ article{
           }
      }
      p{
-          font-family: 'Open Sans Condensed', Helvetica, Arial, sans-serif;
-          font-weight: 500;
-    color: #000000;
-    margin-top: -10px;
-    text-align: right;
-    font-size: 1.6em;
-    line-height: 30px;
-    text-shadow: 4px 1px 5px #ffffff;
-
+          font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+          font-weight: 600;
+          color: #000000;
+          margin-top: -28px;
+          text-align: right;
+          font-size: 1.2em;
+          line-height: 24px;
+          text-shadow: 1px 0px 3px #ffffff;
+          width: 355px;
+          margin-left: -36px;
      }
    
 }

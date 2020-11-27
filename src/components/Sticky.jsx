@@ -1,12 +1,6 @@
 import React, {Fragment} from 'react'
-import styled, {createGlobalStyle} from 'styled-components'
+import styled from 'styled-components'
 
-const GlobalStyle = createGlobalStyle`
-
-.normal{
-     flex-direction: row;
-}
-`
 const Texto = styled.div`
      position: sticky;
      top: 0;
@@ -26,7 +20,6 @@ const Stiky = (props) => {
      // console.log(props.fecha[0].fecha);
      return (
           <Fragment>
-               <GlobalStyle />
                     <Texto>
                          <h3>{props.fecha[0].fecha}</h3>
                     </Texto>
