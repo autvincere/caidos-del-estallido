@@ -1,6 +1,6 @@
 import React,{Fragment, useRef} from 'react';
 import { Helmet } from 'react-helmet';
-// import Logo from './components/Logo';
+import Logo from './components/Logo';
 import Splash from './components/Splash';
 import ScrollSection from './components/ScrollSection';
 import GlobalStyle from './globalStyles'
@@ -31,7 +31,7 @@ function App() {
       </Helmet>
 
       <GlobalStyle />
-        {/* <Logo /> */}
+        <Logo />
         <Splash handleDown = { handleDown }/>
         <ScrollSection downRef={ downRef }/>
 

@@ -3,9 +3,16 @@ import { createGlobalStyle} from 'styled-components'
 import { media } from './utils/constants'
 
 export const GlobalStyle = createGlobalStyle`
+html{
+    ${ media('xs') }{
+        overflow: scroll;
+    }
+    
+}
 body{  
 ${ media('xs') }{
     background: linear-gradient(180deg,#CCCCCC -4%,#ffffff80 8%);
+    overflow-x: hidden;
     }
 }
 ${reset};

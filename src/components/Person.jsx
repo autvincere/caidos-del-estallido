@@ -32,6 +32,9 @@ const StyledImage = styled.img`
           top: 0;
           left: 0;
           object-fit: cover;
+          ${ media('xs') }{
+               max-width: 496px;
+    }
 `;
 
 const ContentImage = styled.div`
@@ -41,7 +44,7 @@ const ContentImage = styled.div`
     height: 340px;
     position: relative;
     overflow: hidden;
-    width: 440px;
+    max-width: 440px;
     ${ media('xs') }{
           max-width: 336px;
     }

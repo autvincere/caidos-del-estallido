@@ -135,7 +135,7 @@ img{
           position: relative;
           display: flex;
           margin: 0px auto;
-          width: 125vw;
+          width: 100vw;
     }
 }
 `
