@@ -10,6 +10,10 @@ const Svg = styled.svg`
     ${ media('xs') }{
         position: relative;
         display: flex;
+        display: -webkit-box; 
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex; 
         margin: 20px auto;
         margin-bottom: 10px;
         left: 8%;
