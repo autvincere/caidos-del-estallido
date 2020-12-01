@@ -22,9 +22,6 @@ const Svg = styled.svg`
 const Logo = (props) => {
      return (
               
-          // <Svg width={props.width} height={150}  x={0}
-          // y={0} viewBox="0 0 170 222.2" id="prefix__Capa_1" xmlSpace="preserve" {...props}>
-
       <Svg
       id="prefix__Capa_1"
       xmlns="http://www.w3.org/2000/svg"
