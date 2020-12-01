@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ReactBasicScroll } from "react-basic-scroll";
-import scrollConfig from "../basicScrollConfig";
+import { media } from '../utils/constants'
 import Section from './Section'
 // import * as All from '../data'
 import{ 
@@ -43,8 +43,10 @@ const BkgImageFooter = styled.div`
     height: 626px;
     background-repeat: no-repeat;
     background-size: contain;
-    background-image: url(${require(`../assets/img/bkg_footer.jpg`)});
-    margin-bottom: -160px;
+    background-image: url(${require(`../assets/img/bkg_footer.png`)});
+    margin-top: -204px;
+    opacity: 0.9;
+    /* margin-bottom: -62px; */
 `
 const ContentInfo = styled.div`
      position: relative;
@@ -90,14 +92,31 @@ const Footer = styled.div`
           column-gap: 30px;
           background-color: #ffffff42;
           padding-top: 17px;
+          ${ media('xs') }{
+               column-count: 1;
+    }
      }
      li{
           margin-bottom: 15px;
+          ${ media('xs') }{
+               width: 90%;
+               margin: 0 auto;
+    }
      }
 
 `
 const ScrollSection = ({ downRef }) => {
-
+     const configFooter = {
+          from: 'top-top',
+          to: 'bottom-bottom',
+          direct: true,
+          props: {
+              '--ty': {
+                  from: '-60px',
+                  to: '50px',
+              }
+          }
+      }
      return (
           <Parallax>
 
@@ -125,10 +144,15 @@ const ScrollSection = ({ downRef }) => {
                          <Section usersInfo={sectionEightteen} />
 
                          <Footer>
-                         <ReactBasicScroll config={scrollConfig}>
-                              <BkgImageFooter className={`o-anim-ty o-apply-ty--x2`}/>
+                         <ReactBasicScroll config={configFooter}>
+                              <BkgImageFooter className={`o-anim-ty o-apply-ty--x1`}/>
                          </ReactBasicScroll>
-                              <Sources />
+
+                         {/* <ReactBasicScroll config={configFooter}> */}
+
+                              <Sources classes="o-anim-ty o-apply-ty--x1"/>
+                              
+                         {/* </ReactBasicScroll> */}
                               {/* <h1>
                                    Indignate - involúcrate y participa
                               </h1> */}

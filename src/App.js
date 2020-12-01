@@ -1,17 +1,10 @@
 import React,{Fragment, useRef} from 'react';
-import styled from 'styled-components'
 import { Helmet } from 'react-helmet';
 import Logo from './components/Logo';
 import Splash from './components/Splash';
 import ScrollSection from './components/ScrollSection';
 import GlobalStyle from './globalStyles'
 
-
-const ContentLogo = styled(Logo)`
-    position: fixed;
-    z-index: 4;
-    margin: 10px 0 0 10px;
-`
 function App() {
   const downRef = useRef()
   const scrollToRef = (ref) => window.scrollTo({ behavior: 'smooth', top: ref.current.offsetTop })
@@ -38,8 +31,7 @@ function App() {
       </Helmet>
 
       <GlobalStyle />
-
-        <ContentLogo />
+        <Logo />
         <Splash handleDown = { handleDown }/>
         <ScrollSection downRef={ downRef }/>
 

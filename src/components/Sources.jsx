@@ -1,9 +1,27 @@
 import React from 'react'
 import Subline from './Subline'
+import { ReactBasicScroll } from "react-basic-scroll";
 
-const Sources = () => {
+const Sources = ({ classes }) => {
+     console.log(classes);
+
+     const configFooter = {
+          from: 'top-top',
+          to: 'bottom-bottom',
+          direct: true,
+          props: {
+              '--ty': {
+                  from: '10px',
+                  to: '100px',
+              }
+          }
+      }
+
      return (
-          <div>
+          <ReactBasicScroll config={configFooter}>
+                            
+       
+          <div className={`o-anim-ty o-apply-ty--x-3`}>
                <h3>
                     Fuentes
                </h3>
@@ -132,6 +150,7 @@ const Sources = () => {
                     </li>
                </ol></div>
           </div>
+     </ReactBasicScroll>
      )
 }
 

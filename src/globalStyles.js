@@ -1,9 +1,14 @@
 import reset from 'react-style-reset';
 import { createGlobalStyle} from 'styled-components'
+import { media } from './utils/constants'
 
 export const GlobalStyle = createGlobalStyle`
+body{  
+${ media('xs') }{
+    background: linear-gradient(180deg,#CCCCCC -4%,#ffffff80 8%);
+    }
+}
 ${reset};
-
 a{color: #ffffff; text-decoration: none;}
 h1{
   font-size: 3em;
@@ -17,8 +22,20 @@ h2{
      font-weight: 300;
      color: black;
 }
-.normal{  flex-direction: row; }
-.reverse{ flex-direction: row-reverse; }
+.normal{  
+    flex-direction: row;
+    ${ media('xs') }{
+        flex-direction: column;
+    } 
+
+ }
+
+.reverse{ 
+    flex-direction: row-reverse;
+    ${ media('xs') }{
+        flex-direction: column;
+    } 
+}
 
 .margin_left{
      right: -180px;
@@ -28,14 +45,25 @@ h2{
      left: -180px;
 }
 .text_right{
-     right: -30%; 
+     right: -30%;
+     ${ media('xs') }{
+        right: 0%;
+    } 
+ 
 }
 .text_left{
-     left: -30%; 
+     left: -30%;
+     ${ media('xs') }{
+        left: 0%;
+    }  
 }
 .max_width{
-     font-size: 4.5em !important;
-    width: 465px !important;
+    font-size: 4.5em !important;
+    max-width: 465px !important;
+    ${ media('xs') }{
+        font-size: 2.5em !important;
+        max-width: 235px !important;
+    }
 }
 .sticky-wrapper {
   position: relative;
@@ -46,6 +74,10 @@ h2{
     top: 0;
     z-index: 2;
     transition: all .7s ease-in;
+
+    ${ media('xs') }{
+        top: 37px;
+    }
 }
 .align{
      max-width: 1100px;

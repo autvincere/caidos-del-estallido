@@ -1,6 +1,7 @@
 import React from 'react'
 import DownHand from './DownHand'
 import styled from 'styled-components'
+import { media } from '../utils/constants'
 import Incremento from './Incremento'
 import { ReactBasicScroll } from "react-basic-scroll";
 
@@ -9,6 +10,9 @@ height: 100vh;
 position: relative;
 z-index: 3;
 background: linear-gradient(180deg, #CCCCCC -17%, #FFFFFF 64%);
+${ media('xs') }{
+     background: transparent;
+    }
 /* margin-top: 30px; */
 
 /**
@@ -54,6 +58,10 @@ article{
     right: 6%;
     top: 37%;
     z-index: 1;
+    ${ media('xs') }{
+          right: 1%;
+          top: 50%;
+          }
      div{
           display: flex;
           h3{
@@ -81,6 +89,13 @@ article{
           text-shadow: 1px 0px 3px #ffffff;
           width: 355px;
           margin-left: -36px;
+          ${ media('xs') }{
+               margin-top: -28px;
+               text-align: left;
+               font-size: 1.2em;
+               width: 340px;
+               margin-left: 17px;
+          }
      }
    
 }
@@ -91,8 +106,13 @@ article{
     bottom: 4%;
     margin-bottom: -4px;
     z-index: 2;
+    bottom: 0%;
     /* animation: appear 1s cubic-bezier(0.390, 0.575, 0.565, 1.000);   */
-    animation: down_arrow 2.5s ease-out 0s infinite;   
+    animation: down_arrow 2.5s ease-out 0s infinite;
+    ${ media('xs') }{
+     bottom: -10%;
+     left: 58%;
+          }   
 
     svg{
      border: 2px dashed black;
@@ -105,12 +125,18 @@ article{
      }
 img{
     margin: 0 auto;
-    margin-top: -100px;
-    /* width: 100vw; */
-
+    margin-top: 0px;
     width: 80vw;
     position: absolute;
     left: 11%;
+
+    ${ media('xs') }{
+          left: -2%;
+          position: relative;
+          display: flex;
+          margin: 0px auto;
+          width: 125vw;
+    }
 }
 `
 const Splash = ({ handleDown }) => {
@@ -128,7 +154,7 @@ const Splash = ({ handleDown }) => {
       }
      return (
           <Section>
-               <h1>#ellosson</h1>
+              
                <article>
                     <div>
                          {/* <input type="text" name="" value={increment}/> */}

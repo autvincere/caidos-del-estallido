@@ -1,5 +1,6 @@
 import React, { Fragment, useRef } from 'react'
 import styled, { keyframes } from 'styled-components'
+import { media } from '../utils/constants'
 
 import { ReactBasicScroll } from "react-basic-scroll";
 import scrollConfig from "../basicScrollConfig";
@@ -40,7 +41,10 @@ const ContentImage = styled.div`
     height: 340px;
     position: relative;
     overflow: hidden;
-    width: 460px;
+    width: 440px;
+    ${ media('xs') }{
+          max-width: 336px;
+    }
      /* img{
           max-width: 590px;
           position: absolute;
@@ -55,6 +59,9 @@ const ContentPerson = styled.article`
      position: relative;
      margin: 54px auto 72px auto;
      z-index: 1;
+     ${ media('xs') }{
+          max-width: 281px;
+    }
      h4{
           font-size: 5.4em;
           font-family: 'Open Sans',Helvetica,Arial,sans-serif;
@@ -73,6 +80,9 @@ const ContentPerson = styled.article`
           font-size: 1.5em;
           margin-top: 15px;
           max-width: 440px;
+          ${ media('xs') }{
+               width: 336px;
+          }
      }
      figure{ 
           margin-top: 60px;  
@@ -91,6 +101,13 @@ const ContentPerson = styled.article`
           font-size: 1.3em;
           position: absolute;
           max-width: 460px;
+          ${ media('xs') }{
+               position: relative;
+               left: 18%;
+               right: 0;
+               padding: 8px 22px;
+               width: 298px;
+          }
       }
 `
 
