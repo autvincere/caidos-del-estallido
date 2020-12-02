@@ -4,6 +4,7 @@ import { ReactBasicScroll } from "react-basic-scroll";
 import LazyLoad from "react-lazyload";
 import { media } from '../utils/constants'
 import Section from './Section'
+
 // import * as All from '../data'
 import{ 
      sectionOne,
@@ -57,7 +58,7 @@ const ContentInfo = styled.div`
                border: 1px solid black;
           }
      }
-     
+
           
 `
 const Footer = styled.div`
