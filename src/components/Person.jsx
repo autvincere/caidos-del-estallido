@@ -48,13 +48,6 @@ const ContentImage = styled.div`
     ${ media('xs') }{
           max-width: 280px;
     }
-     /* img{
-          max-width: 590px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          object-fit: cover;
-     } */
 `
 const ContentPerson = styled.article`
      display: flex;
