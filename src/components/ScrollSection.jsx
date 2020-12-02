@@ -57,6 +57,7 @@ const ContentInfo = styled.div`
                border: 1px solid black;
           }
      }
+     
           
 `
 const Footer = styled.div`
