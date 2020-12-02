@@ -40,13 +40,13 @@ const StyledImage = styled.img`
 const ContentImage = styled.div`
      display: block;
     /* width: 100%; */
-    max-width: 460px;
+    width: 486px;
     height: 340px;
     position: relative;
     overflow: hidden;
     max-width: 440px;
     ${ media('xs') }{
-          max-width: 336px;
+          max-width: 280px;
     }
      /* img{
           max-width: 590px;
@@ -75,6 +75,9 @@ const ContentPerson = styled.article`
           -webkit-text-stroke: 1.5px #000000ad;
           text-transform: uppercase;
           letter-spacing: -1px;
+          ${ media('xs') }{
+               /* position: relative; */
+          }
 
      }
      h3{
@@ -84,7 +87,7 @@ const ContentPerson = styled.article`
           margin-top: 15px;
           max-width: 440px;
           ${ media('xs') }{
-               width: 336px;
+               width: 282px;
           }
      }
      figure{ 
@@ -106,10 +109,10 @@ const ContentPerson = styled.article`
           max-width: 460px;
           ${ media('xs') }{
                position: relative;
-               left: 18%;
+               left: 9%;
                right: 0;
-               padding: 8px 22px;
-               width: 298px;
+               padding: 8px 0px;
+               width: 284px;
           }
       }
 `

@@ -1,6 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
+import React,{useRef} from 'react'
+import styled, { keyframes } from 'styled-components'
 import { ReactBasicScroll } from "react-basic-scroll";
+import LazyLoad from "react-lazyload";
 import { media } from '../utils/constants'
 import Section from './Section'
 // import * as All from '../data'
@@ -26,6 +27,7 @@ import{
 } from '../data'
 import IntroText from './IntroText';
 import Sources from './Sources';
+import bkgFooter from '../assets/img/bkg_footer.png'
 
 
 const Parallax = styled.section`
@@ -37,16 +39,6 @@ const BkgImage = styled.div`
     background-repeat: repeat-y;
     background-size: contain;
     background-image: url(${require(`../assets/img/bkg_mapav2_opt.jpg`)});
-`
-const BkgImageFooter = styled.div`
-    width: 100%;
-    height: 626px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-image: url(${require(`../assets/img/bkg_footer.png`)});
-    margin-top: -204px;
-    opacity: 0.9;
-    /* margin-bottom: -62px; */
 `
 const ContentInfo = styled.div`
      position: relative;
@@ -105,15 +97,62 @@ const Footer = styled.div`
      }
 
 `
+const ContentImage = styled.div`
+     display: block;
+    /* width: 100%; */
+    width: 84vw;
+    height: 90vh;
+    position: relative;
+    overflow: hidden;
+    ${ media('xs') }{
+          width: 104vw;
+          height: 43vh;
+    }
+    `
+    const loadingAnimation = keyframes`
+    0% {
+      background-color: #fff;
+    }
+    50% {
+      background-color: #ccc;
+    }
+    100% {
+      background-color: #fff;
+    }
+  `;
+  const Placeholder = styled.div`
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    animation: ${loadingAnimation} 1s infinite;
+  `;
+  const StyledImage = styled.img`
+  width: 84vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  ${ media('xs') }{
+     width: 97vw;
+}
+`;
+
 const ScrollSection = ({ downRef }) => {
+     const refPlaceholder = useRef();
+     const removePlaceholder = () => {
+          refPlaceholder.current.remove();
+        };
+
      const configFooter = {
           from: 'top-top',
           to: 'bottom-bottom',
           direct: true,
           props: {
               '--ty': {
-                  from: '-60px',
-                  to: '50px',
+                  from: '0px',
+                  to: '80px',
               }
           }
       }
@@ -145,17 +184,27 @@ const ScrollSection = ({ downRef }) => {
 
                          <Footer>
                          <ReactBasicScroll config={configFooter}>
-                              <BkgImageFooter className={`o-anim-ty o-apply-ty--x1`}/>
+
+                         <ContentImage>
+                                           
+                                           <Placeholder ref={refPlaceholder} />
+                                           <LazyLoad>
+                                                <StyledImage 
+                                                     src={bkgFooter} 
+                                                     onLoad={removePlaceholder}
+                                                     onError={removePlaceholder}
+                                                     className={`o-anim-ty o-apply-ty--x1`}
+                                                     />
+                                           </LazyLoad>
+                         </ContentImage>
+{/* 
+                              <BkgImageFooter className={`o-anim-ty o-apply-ty--x1`}/> */}
                          </ReactBasicScroll>
 
-                         {/* <ReactBasicScroll config={configFooter}> */}
+                         
 
                               <Sources classes="o-anim-ty o-apply-ty--x1"/>
                               
-                         {/* </ReactBasicScroll> */}
-                              {/* <h1>
-                                   Indignate - involúcrate y participa
-                              </h1> */}
                          </Footer>
 
                     </BkgImage>

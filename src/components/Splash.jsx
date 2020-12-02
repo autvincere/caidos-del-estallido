@@ -8,7 +8,7 @@ import { ReactBasicScroll } from "react-basic-scroll";
 const Section = styled.section`
 height: 100vh;
 position: relative;
-z-index: 3;
+z-index: 2;
 background: linear-gradient(180deg, #CCCCCC -17%, #FFFFFF 64%);
 ${ media('xs') }{
      background: transparent;
@@ -59,7 +59,7 @@ article{
     top: 37%;
     z-index: 1;
     ${ media('xs') }{
-          right: 1%;
+          right: 9%;
           top: 50%;
           }
      div{
@@ -87,14 +87,14 @@ article{
           font-size: 1.2em;
           line-height: 24px;
           text-shadow: 1px 0px 3px #ffffff;
-          width: 355px;
+          /* width: 355px; */
           margin-left: -36px;
           ${ media('xs') }{
-               margin-top: -28px;
                text-align: left;
                font-size: 1.2em;
-               width: 340px;
-               margin-left: 17px;
+               /* width: 340px; */
+               margin-left: 0px;
+               max-width: 300px;
           }
      }
    

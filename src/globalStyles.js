@@ -29,6 +29,10 @@ h2{
      font-weight: 300;
      color: black;
 }
+.bkg_white{
+    /* background-color: #ffffff; */
+    text-shadow: 2px 1px 4px #FFFFFF;
+}
 .normal{  
     flex-direction: row;
     ${ media('xs') }{
@@ -68,7 +72,7 @@ h2{
     font-size: 4.5em !important;
     max-width: 465px !important;
     ${ media('xs') }{
-        font-size: 2.5em !important;
+        font-size: 2.9em !important;
         max-width: 235px !important;
     }
 }
